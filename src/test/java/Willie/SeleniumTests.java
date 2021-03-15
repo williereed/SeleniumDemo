@@ -1,8 +1,6 @@
 package Willie;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +17,13 @@ import java.text.DateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+// Demonstration of multi browser test cases
+// when time permits the following work needs to be done:
+// - get Google mail cases running again
+// - add verification that email was sent successfully
+// - extract element IDs to string constants
+// - Safari not exiting gracefully
+
 public class SeleniumTests {
 
   private String YahooAddress = "MySeleniumTest42@yahoo.com";
@@ -29,42 +34,38 @@ public class SeleniumTests {
   private boolean debug = true;                   // true will write each action to the console
   private enum Browser {CHROME, FIREFOX, IE, EDGE, SAFARI};
   private enum LocateType {ID, NAME, LINK_TEXT, CSS_SELECTOR, CLASS_NAME, XPATH};
+  private WebDriver driver = null;
+
+  @BeforeEach
+  public void Setup() {
+    driver = null;
+  }
+
+  @AfterEach
+  public void Cleanup() {
+    driver.quit();
+  }
 
   //<editor-fold desc="Google SendEmail WithoutRetries">
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Chrome_Google_SendEmail_WithoutRetries() {
-    WebDriver driver = BrowserFactory(Browser.CHROME);
-    try {
-      Google_Send_Email_WithoutRetries(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.CHROME);
+    Google_Send_Email_WithoutRetries(driver);
   }
 
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Firefox_Google_SendEmail_WithoutRetries() {
-    WebDriver driver = BrowserFactory(Browser.FIREFOX);
-    try {
-      Google_Send_Email_WithoutRetries(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.FIREFOX);
+    Google_Send_Email_WithoutRetries(driver);
   }
 
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Safari_Google_SendEmail_WithoutRetries() {
-    WebDriver driver = BrowserFactory(Browser.SAFARI);
-    try {
-      Google_Send_Email_WithoutRetries(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.SAFARI);
+    Google_Send_Email_WithoutRetries(driver);
   }
   //</editor-fold>
 
@@ -72,141 +73,82 @@ public class SeleniumTests {
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Chrome_Google_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.CHROME);
-    try {
-      Google_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.CHROME);
+    Google_Send_Email(driver);
   }
 
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Firefox_Google_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.FIREFOX);
-    try {
-      Google_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.FIREFOX);
+    Google_Send_Email(driver);
   }
+
   @Test
   @Disabled("Selenium is no longer able to sign in to gmail")
   public void Safari_Google_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.SAFARI);
-    try {
-      Google_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.SAFARI);
+    Google_Send_Email(driver);
   }
   //</editor-fold>
 
   //<editor-fold desc="Google Search">
   @Test
   public void Chrome_Google_Search() {
-    WebDriver driver = BrowserFactory(Browser.CHROME);
-    try {
-      Google_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.CHROME);
+    Google_Search(driver);
   }
 
   @Test
   public void Firefox_Google_Search() {
-    WebDriver driver = BrowserFactory(Browser.FIREFOX);
-    try {
+    driver = BrowserFactory(Browser.FIREFOX);
     Google_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
   }
 
   @Test
   public void Safari_Google_Search() {
-    WebDriver driver = BrowserFactory(Browser.SAFARI);
-    try {
-      Google_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.SAFARI);
+    Google_Search(driver);
   }
   //</editor-fold>
 
   //<editor-fold desc="Yahoo Send Email">
   @Test
   public void Chrome_Yahoo_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.CHROME);
-    try {
-      Yahoo_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.CHROME);
+    Yahoo_Send_Email(driver);
   }
 
   @Test
   public void Firefox_Yahoo_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.FIREFOX);
-    try {
-      Yahoo_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.FIREFOX);
+    Yahoo_Send_Email(driver);
   }
 
   @Test
   public void Safari_Yahoo_Send_Email() {
-    WebDriver driver = BrowserFactory(Browser.SAFARI);
-    try {
-      Yahoo_Send_Email(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.SAFARI);
+    Yahoo_Send_Email(driver);
   }
   //</editor-fold>
 
   //<editor-fold desc="Yahoo Search">
   @Test
   public void Chrome_Yahoo_Search() {
-    WebDriver driver = BrowserFactory(Browser.CHROME);
-    try {
+    driver = BrowserFactory(Browser.CHROME);
     Yahoo_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
   }
 
   @Test
   public void Firefox_Yahoo_Search() {
-    WebDriver driver = BrowserFactory(Browser.FIREFOX);
-    try {
-      Yahoo_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.FIREFOX);
+    Yahoo_Search(driver);
   }
 
   @Test
   public void Safari_Yahoo_Search() {
-    WebDriver driver = BrowserFactory(Browser.SAFARI);
-    try {
-      Yahoo_Search(driver);
-    }
-    finally {
-      driver.close();
-    }
+    driver = BrowserFactory(Browser.SAFARI);
+    Yahoo_Search(driver);
   }
   //</editor-fold>
 
